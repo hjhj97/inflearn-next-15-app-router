@@ -35,3 +35,11 @@
 - 특정 페이지가 접속 요청을 받을 때마다 매번 변화가 생기거나, 데이터가 달라지는 경우 Dynamic Page로 설정됨, 그 외에는 Static Page 로 설정된다
 - 캐싱되지 않은 Data fetching이 일어나는 경우
 - 동적함수(쿠키,헤더,쿼리스트링)을 사용하는 경우
+
+### Route Segment Option
+
+- 특정 페이지의 유형을 강제로 static, dynamic 페이지로 설정
+- `auto` : 기본값, 강제하지 않음
+- `force-dynamic` : 강제로 dynamic 페이지로 설정
+- `force-static` : 강제로 static 페이지로 설정, 에러 발생해도 무시하고 빌드
+- `error` : 강제로 static 페이지로 설정, 빌드 시 오류를 발생시켜줌
