@@ -1,12 +1,12 @@
-## Next.js App Router
+# Next.js App Router
 
 [한 입 크기로 잘라먹는 Next.js](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%ED%81%AC%EA%B8%B0-nextjs)
 
-#### router-group
+## router-group
 
 - `src/app` 디렉토리에서 소괄호로 감싸주면 경로에 영향을 미치지 않으면서 따로 분리할 수 있다.
 
-#### Server Component / Client Component
+## Server Component / Client Component
 
 - Page router 에서는 디폴트로 서버 -> 클라이언트로 JS 번들 파일을 보내서 hydration 과정을 거쳐야 했음 (클라이언트 컴포넌트)
 - 하지만 정적 컨텐츠만 존재하는 일부 페이지에서는 굳이 hydration 과정이 필요하지 않기 때문에 번들 파일을 받을 필요가 없음 (서버 컴포넌트)
@@ -17,3 +17,9 @@
 - 클라이언트 컴포넌트에서는 서버 컴포넌트를 import 할 수 없음, 만약 서버 컴포넌트를 갖고오기 위해선 children으로 주입해야함
 - 서버 컴포넌트를 실행하게 되면 RSC payload가 생성되고, 그 이후에 HTML 파일이 생성됨
 - 네비게이팅이 일어나면 공통적으로 RSC payload 를 보내고, 만약 클라이언트 컴포넌트라면 JS 번들파일도 같이 보냄
+
+## Data cache
+
+- `no-store` : 캐싱하지 않음. 항상 백엔드 서버로부터 새로운 데이터를 받아옴
+- `force-cache`: 항상 캐싱된 데이터를 사용함. 캐싱되어 있다면 백엔드 서버를 거치지 않음
+- `revalidate` : 일정 시간을 주기로 캐시를 업데이트함. 시간이 지나면 일단 stale 데이터를 먼저 보내준 뒤, 새 데이터로 업데이트함
