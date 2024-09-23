@@ -1,4 +1,9 @@
+import { notFound } from "next/navigation";
 import style from "./page.module.css";
+
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }];
+}
 
 export default async function Page({
   params,
@@ -10,6 +15,9 @@ export default async function Page({
   );
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     return <div>오류가 발생했습니다</div>;
   }
   const book = await response.json();
