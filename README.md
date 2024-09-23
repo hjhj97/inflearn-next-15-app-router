@@ -43,3 +43,9 @@
 - `force-dynamic` : 강제로 dynamic 페이지로 설정
 - `force-static` : 강제로 static 페이지로 설정, 에러 발생해도 무시하고 빌드
 - `error` : 강제로 static 페이지로 설정, 빌드 시 오류를 발생시켜줌
+
+## Streaming
+
+- `loading.tsx` 파일을 생성하면 해당 파일이 위치한 경로상의 `page.tsx`가 로딩이 되는 동안 대신 보여주게 됨
+- 비동기 컴포넌트(페이지)에만 적용 가능
+- 컴포넌트 단위로 스트리밍을 적용하기 위해서는 `<Suspense>` 컴포넌트를 사용해야함
