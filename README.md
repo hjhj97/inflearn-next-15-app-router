@@ -55,3 +55,5 @@
 - 에러가 발생했을 경우에 보여줄 페이지는 `error.tsx` 로 작성함
 - `props` 로 `error`객체와 `reset` 함수를 받음
 - `error.tsx` 파일이 존재하는 경로상의 레이아웃을 기준으로 보여줌
+
+## Server Action
