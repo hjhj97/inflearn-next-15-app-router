@@ -120,3 +120,9 @@
 - 디바이스 사이즈에 맞도록 가공
 - Lazy loading
 - 외부 서버에서 갖고올 경우, `next.config.ts` 에 도메인을 명시해줘야함
+
+## SEO
+
+- page 파일 안에서 설정가능
+- 정적인 데이터라면 `export const metadata = {}` 설정
+- 동적인 데이터라면 `export function generateMetadata()` 설정
