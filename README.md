@@ -57,3 +57,49 @@
 - `error.tsx` 파일이 존재하는 경로상의 레이아웃을 기준으로 보여줌
 
 ## Server Action
+
+- 브라우저에서 호출할 수 있는 서버에서 실행되는 비동기 함수
+    <details>
+    <summary>예시 코드</summary>
+
+  ```tsx
+  <form className={style.form_container} action={createReviewAction}>
+    <input name="bookId" value={bookId} hidden />
+    <textarea required name="content" placeholder="리뷰 내용" />
+    <div className={style.submit_container}>
+      <input required name="author" placeholder="작성자" />
+      <button type="submit">작성하기</button>
+    </div>
+  </form>
+  ```
+
+  - form 태그에서 submit 이 일어나면서 서버에서 `createReviewAction` 함수를 실행함
+
+  ```ts
+  "use server";
+  export async function createReviewAction(formData: FormData) {
+    const bookId = formData.get("bookId")?.toString();
+    const content = formData.get("content")?.toString();
+    const author = formData.get("author")?.toString();
+
+    if (!bookId || !content || !author) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_SERVER_URL}/review`,
+        { method: "POST", body: JSON.stringify({ content, author, bookId }) }
+      );
+      revalidatePath(`/book/${bookId}`);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+  }
+  ```
+
+  </details>
+
+- 서버에 작성해야할 API를 클라이언트에서 대신 작성할 수 있음
+- 서버에서만 실행되기 때문에 클라이언트에서는 서버 액션의 로직이 노출되지 않음

@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 export async function createReviewAction(formData: FormData) {
   const bookId = formData.get("bookId")?.toString();
   const content = formData.get("content")?.toString();
@@ -14,6 +16,7 @@ export async function createReviewAction(formData: FormData) {
       `${process.env.NEXT_PUBLIC_API_SERVER_URL}/review`,
       { method: "POST", body: JSON.stringify({ content, author, bookId }) }
     );
+    revalidatePath(`/book/${bookId}`);
   } catch (error) {
     console.error(error);
     return;
